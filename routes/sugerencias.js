@@ -23,15 +23,15 @@ router.post('/sugerencias/enviar', isAuthenticated, async (req, res) => {
             host: 'smtp.ethereal.email',
             port: 587,
             auth: {
-                user: 'shaylee.kuhlman@ethereal.email',
-                pass: 'CpDCAKnFu2kyVt4WUE'
+                user: 'gaylord35@ethereal.email',
+                pass: 'SaNgx6AUvQjpEhBbs3'
             }
         });
 
         // Opciones del correo electrónico
         let mailOptions = {
-            from: 'shaylee.kuhlman@ethereal.email',
-            to: 'dam2proyectoad3@gmail.com',
+            from: 'gaylord35@ethereal.email',
+            to: 'elliecolorado@protonmail.com',
             subject: `Sugerencia de ${user.nombre}: ${subject}`,
             text: `Sugerencia de ${user.nombre} ${user.apellidos} (${user.email}), Rol: ${user.rol}\n\nSugerencia: ${suggestion}`
         };
