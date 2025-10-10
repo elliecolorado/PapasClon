@@ -16,24 +16,22 @@ router.post('/sugerencias/enviar', isAuthenticated, async (req, res) => {
     const user = req.user;
 
     try {
-        // Configuración del transportador de correo electrónico
-        //Para un correcto testeo de la aplicación, se debe entrar en https://ethereal.email/ con los datos de 
-        //la cuenta que figura abajo, y enviar sugerencias directamente desde la aplicación
+        //TODO Seguramente sería mejor poner los datos de inicio de sesión en las variables de entorno
         const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
+            host: EMAIL_SUGERENCIAS_HOST,
+            port: EMAIL_SUGERENCIAS_PORT,
             auth: {
-                user: 'gaylord35@ethereal.email',
-                pass: 'SaNgx6AUvQjpEhBbs3'
+                user: EMAIL_SUGERENCIAS_SENDER_USER,
+                pass: EMAIL_SUGERENCIAS_SENDER_PASS
             }
         });
 
         // Opciones del correo electrónico
         let mailOptions = {
-            from: 'gaylord35@ethereal.email',
-            to: 'elliecolorado@protonmail.com',
-            subject: `Sugerencia de ${user.nombre}: ${subject}`,
-            text: `Sugerencia de ${user.nombre} ${user.apellidos} (${user.email}), Rol: ${user.rol}\n\nSugerencia: ${suggestion}`
+            from: EMAIL_SUGERENCIAS_SENDER_USER,
+            to: EMAIL_SUGERENCIAS_RECEIVER_USER,
+            subject: 'Sugerencia: ${subject}',
+            text: 'Sugerencia realizada por: ${user.nombre} ${user.apellidos} | (${user.email}) | ${user.rol}\n${suggestion}'
         };
 
         // Enviar correo electrónico al administrador
