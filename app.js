@@ -18,7 +18,7 @@ require('./passport/local-auth');
 
 //Conexión con la base de datos
 mongoose.connect('mongodb://90.74.45.43:27017/PapasClon',
-s
+
   { useNewUrlParser: true, useUnifiedTopology: true }
 
 ).then(db => console.log('Base de datos conectada.'))
