@@ -18,18 +18,18 @@ router.post('/sugerencias/enviar', isAuthenticated, async (req, res) => {
     try {
         //TODO Seguramente sería mejor poner los datos de inicio de sesión en las variables de entorno
         const transporter = nodemailer.createTransport({
-            host: smtp.ethereal.email,
-            port: 587,
+            host: EMAIL_SUGERENCIAS_HOST,
+            port: Number(EMAIL_SUGERENCIAS_PORT),
             auth: {
-                user: "gaylord35@ethereal.email",
-                pass: "CpDCAKnFu2kyVt4WUE"
+                user: EMAIL_SUGERENCIAS_SENDER_USER,
+                pass: EMAIL_SUGERENCIAS_SENDER_PASS
             }
         });
 
         // Opciones del correo electrónico
         let mailOptions = {
-            from: "gaylord35@ethereal.email",
-            to: "elliecolorado@protonmail.com",
+            from: EMAIL_SUGERENCIAS_SENDER_USER,
+            to: EMAIL_SUGERENCIAS_RECEIVER_USER,
             subject: `Sugerencia: ${subject}`,
             text: `Sugerencia realizada por: ${user.nombre} ${user.apellidos} | (${user.email}) | ${user.rol}\n${suggestion}`
         };
