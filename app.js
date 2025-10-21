@@ -1,4 +1,5 @@
 //Requires necesarios
+const dotenv = require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -26,7 +27,7 @@ mongoose.connect(process.env.DATABASE_CONNECTION,
   .catch(err => console.log(err));
 
 // Setup del motor de vistas
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 
 app.set('views', path.join(__dirname, 'views'));
 
